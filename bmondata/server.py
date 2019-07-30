@@ -1,4 +1,6 @@
 from urllib.parse import urljoin
+import re
+import json
 import requests
 import pandas as pd
 
@@ -20,10 +22,10 @@ def check_response(resp_dict):
 
 class Server:
 
-    def __init__(self, base_url):
+    def __init__(self, base_url, store_key=None):
 
         # make a call to the server to see if it is accessible
-        # make store-key method has been around since the beginning.
+        # make-store-key method has been around since the beginning.
         try:
             requests.get(urljoin(base_url, 'make-store-key/'))
         except:
@@ -40,6 +42,7 @@ class Server:
             raise ValueError(f'{base_url} is not running a current enough version of BMON.')
 
         self.base_url = base_url
+        self.store_key = store_key
 
     def _url(self, url_part):
         """Helper method for making BMON URLs.
@@ -141,3 +144,25 @@ class Server:
 
         check_response(resp)
         return resp['data']['organizations']
+
+    def store_sensor_readings(self, reading_list):
+        """
+        """
+
+        if self.store_key is None:
+            raise ValueError('No "store_key" present. The Server object must be constructed with a "store_key".')
+
+        # make the Post parameter necessary to store the readings on BMON
+        post_data = json.dumps(
+            {
+                'storeKey': self.store_key,
+                'readings': reading_list
+            }
+        )
+
+        resp = requests.post(self._url('readingdb/reading/store/'), data=post_data, timeout=15, verify=False).text
+        match = re.match(r'(\d+) readings stored successfully', resp)
+        if match:
+            return(int(match.groups()[0]))
+        else:
+            raise ValueError(f'Error storing readings: {resp}')
