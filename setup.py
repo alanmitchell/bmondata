@@ -3,9 +3,13 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+# read version number from package
+import bmondata
+ver = bmondata.__version__
+
 setuptools.setup(
     name="bmondata",
-    version="0.5.0",
+    version=ver,
     author="Alan Mitchell",
     author_email="tabb99@gmail.com",
     description="Allows retrieval and storage of data on BMON Servers.",
@@ -15,7 +19,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Apache License 2.0",
+        "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
