@@ -14066,13 +14066,40 @@ object, and a list of new readings are provided.  Here is an example:</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Utility-Functions">Utility Functions<a class="anchor-link" href="#Utility-Functions">&#182;</a></h2><p>A couple of utility functions are available to help process the data in some of the
+fields returned to describe Buildings.  Currently, there are two functions: <code>bmondata.csnl_to_list</code>
+and <code>bmondata.split_strip</code>.  Both functions split and clean a string and will be useful for
+turning a field containing Sensor IDs into a Python list.  Here is the code for the
+two functions:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">csnl_to_list</span><span class="p">(</span><span class="n">csnl_str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Converts a comma-separated and new-line separated string into</span>
+<span class="sd">    a list, stripping whitespace from both ends of each item.  Does not</span>
+<span class="sd">    return any zero-length strings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">csnl_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">it</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">it</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+
+<span class="k">def</span> <span class="nf">split_strip</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">delim</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Converts a delimited string into a list, stripping whitespace </span>
+<span class="sd">    from both ends of each item.  Does not return any zero-length strings.</span>
+<span class="sd">    &#39;delim&#39; is the delimiter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">it</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">it</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Used-to-Save-this-Notebook-as-an-HTML-File">Used to Save this Notebook as an HTML File<a class="anchor-link" href="#Used-to-Save-this-Notebook-as-an-HTML-File">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>jupyter nbconvert usage_examples.ipynb --to html
@@ -14093,7 +14120,7 @@ object, and a list of new readings are provided.  Here is an example:</p>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[NbConvertApp] Converting notebook usage_examples.ipynb to html
-[NbConvertApp] Writing 304859 bytes to usage_examples.html
+[NbConvertApp] Writing 305875 bytes to usage_examples.html
 </pre>
 </div>
 </div>
