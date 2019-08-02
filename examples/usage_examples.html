@@ -13123,53 +13123,16 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Installation">Installation<a class="anchor-link" href="#Installation">&#182;</a></h2><p>The package can be installed through use of pip.  (The exclamation point in the
-following cell allows a shell command to be run inside the Jupyter notebook.)</p>
+<h2 id="Installation">Installation<a class="anchor-link" href="#Installation">&#182;</a></h2><p>The package can be installed through use of pip:</p>
+
+<pre><code>pip install --upgrade bmondata
+
+</code></pre>
+<p>The <code>--upgrade</code> flag ensures that the newest version will replace a bmondata version
+that you may already have.</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install --upgrade -i https://test.pypi.org/simple/ bmondata
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Looking in indexes: https://test.pypi.org/simple/
-Requirement already up-to-date: bmondata in /home/tabb99/anaconda3/lib/python3.7/site-packages (0.5.1)
-Requirement already satisfied, skipping upgrade: pandas&gt;=0.23.2 in /home/tabb99/anaconda3/lib/python3.7/site-packages (from bmondata) (0.25.0)
-Requirement already satisfied, skipping upgrade: requests&gt;=2.18.4 in /home/tabb99/anaconda3/lib/python3.7/site-packages (from bmondata) (2.21.0)
-Requirement already satisfied, skipping upgrade: python-dateutil&gt;=2.6.1 in /home/tabb99/anaconda3/lib/python3.7/site-packages (from pandas&gt;=0.23.2-&gt;bmondata) (2.8.0)
-Requirement already satisfied, skipping upgrade: numpy&gt;=1.13.3 in /home/tabb99/anaconda3/lib/python3.7/site-packages (from pandas&gt;=0.23.2-&gt;bmondata) (1.16.4)
-Requirement already satisfied, skipping upgrade: pytz&gt;=2017.2 in /home/tabb99/anaconda3/lib/python3.7/site-packages (from pandas&gt;=0.23.2-&gt;bmondata) (2019.1)
-Requirement already satisfied, skipping upgrade: certifi&gt;=2017.4.17 in /home/tabb99/anaconda3/lib/python3.7/site-packages (from requests&gt;=2.18.4-&gt;bmondata) (2019.6.16)
-Requirement already satisfied, skipping upgrade: idna&lt;2.9,&gt;=2.5 in /home/tabb99/anaconda3/lib/python3.7/site-packages (from requests&gt;=2.18.4-&gt;bmondata) (2.8)
-Requirement already satisfied, skipping upgrade: urllib3&lt;1.25,&gt;=1.21.1 in /home/tabb99/anaconda3/lib/python3.7/site-packages (from requests&gt;=2.18.4-&gt;bmondata) (1.24.1)
-Requirement already satisfied, skipping upgrade: chardet&lt;3.1.0,&gt;=3.0.2 in /home/tabb99/anaconda3/lib/python3.7/site-packages (from requests&gt;=2.18.4-&gt;bmondata) (3.0.4)
-Requirement already satisfied, skipping upgrade: six&gt;=1.5 in /home/tabb99/anaconda3/lib/python3.7/site-packages (from python-dateutil&gt;=2.6.1-&gt;pandas&gt;=0.23.2-&gt;bmondata) (1.12.0)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13191,12 +13154,11 @@ settings.py file on the BMON server.</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">bmondata</span>
 
 <span class="c1"># Make a Server object for retrieving data only</span>
-<span class="c1">#server = bmondata.Server(&#39;https://bmon.analysisnorth.com&#39;)</span>
+<span class="n">server</span> <span class="o">=</span> <span class="n">bmondata</span><span class="o">.</span><span class="n">Server</span><span class="p">(</span><span class="s1">&#39;https://bmon.analysisnorth.com&#39;</span><span class="p">)</span>
 
 <span class="c1"># The Server object below can also be used to store sensor readings </span>
 <span class="c1"># on the BMON server.</span>
-<span class="c1">#server = bmondata.Server(&#39;https://bmon.analysisnorth.com&#39;, store_key=&#39;tempkey&#39;)</span>
-<span class="n">server</span> <span class="o">=</span> <span class="n">bmondata</span><span class="o">.</span><span class="n">Server</span><span class="p">(</span><span class="s1">&#39;http://0.0.0.0:8000&#39;</span><span class="p">,</span> <span class="n">store_key</span><span class="o">=</span><span class="s1">&#39;tempkey&#39;</span><span class="p">)</span>
+<span class="n">server</span> <span class="o">=</span> <span class="n">bmondata</span><span class="o">.</span><span class="n">Server</span><span class="p">(</span><span class="s1">&#39;https://bmon.analysisnorth.com&#39;</span><span class="p">,</span> <span class="n">store_key</span><span class="o">=</span><span class="s1">&#39;temporary-key&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13855,11 +13817,11 @@ IDs to the method:</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The return value is a list of dictionaries, each dictionary describing a Sensor.
 The keys in the dictionary are the fields associated with the Sensor model in the
-BMON Django application. Further documentation of the fields is available
+BMON Django application. The <code>buildings</code> key in the dictionary gives a list of
+buildings that the Sensor is associated with.
+Further documentation of the fields is available
 <a href="https://github.com/alanmitchell/bmon/blob/master/bmsapp/models.py">Here</a>; search
 for the <code>class Sensor</code> section of the code.</p>
-<p>The <code>buildings</code> key in the dictionary gives a list of buildings that the Sensor
-is associated with.</p>
 <p>If you do not provide any IDs (either no parameters, or an empty list), information
 for <em>all</em> sensors will be returned.  For example, <code>server.sensors()</code> will return
 a list of all sensors.</p>
@@ -13878,10 +13840,10 @@ BMON system.  Pass one or a list of Building IDs to get Building information:</p
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">server</span><span class="o">.</span><span class="n">buildings</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">server</span><span class="o">.</span><span class="n">buildings</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -13894,130 +13856,74 @@ BMON system.  Pass one or a list of Building IDs to get Building information:</p
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;id&#39;: 2,
-  &#39;title&#39;: &#39;THRHA Kake Senior Center&#39;,
+<pre>[{&#39;id&#39;: 6,
+  &#39;title&#39;: &#39;Rivendell Hall&#39;,
   &#39;report_footer&#39;: &#39;&#39;,
-  &#39;latitude&#39;: 56.97,
-  &#39;longitude&#39;: -133.94,
+  &#39;latitude&#39;: 64.864072,
+  &#39;longitude&#39;: -147.775014,
   &#39;timezone&#39;: &#39;US/Alaska&#39;,
-  &#39;schedule&#39;: &#39;&#39;,
+  &#39;schedule&#39;: &#39;M-F: 8a-5p&#39;,
   &#39;timeline_annotations&#39;: &#39;&#39;,
   &#39;other_properties&#39;: &#39;&#39;,
   &#39;current_mode&#39;: &#39;&#39;,
-  &#39;sensors&#39;: [{&#39;sensor_id&#39;: &#39;kake_temp&#39;,
-    &#39;sensor_group&#39;: &#39;Weather&#39;,
-    &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;kake_windspeed&#39;,
-    &#39;sensor_group&#39;: &#39;Weather&#39;,
-    &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;76967&#39;, &#39;sensor_group&#39;: &#39;Space Heating&#39;, &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;75997&#39;, &#39;sensor_group&#39;: &#39;Space Heating&#39;, &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;75945&#39;, &#39;sensor_group&#39;: &#39;Space Heating&#39;, &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;76915&#39;, &#39;sensor_group&#39;: &#39;Space Heating&#39;, &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;76952&#39;, &#39;sensor_group&#39;: &#39;Space Heating&#39;, &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;76888&#39;, &#39;sensor_group&#39;: &#39;Space Heating&#39;, &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;76049&#39;, &#39;sensor_group&#39;: &#39;Space Heating&#39;, &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;76887&#39;, &#39;sensor_group&#39;: &#39;Space Heating&#39;, &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;76089&#39;, &#39;sensor_group&#39;: &#39;Space Heating&#39;, &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;76050&#39;,
-    &#39;sensor_group&#39;: &#39;Domestic Hot Water&#39;,
-    &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;76037&#39;,
-    &#39;sensor_group&#39;: &#39;Domestic Hot Water&#39;,
-    &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;75971&#39;,
-    &#39;sensor_group&#39;: &#39;Domestic Hot Water&#39;,
-    &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;77938&#39;,
-    &#39;sensor_group&#39;: &#39;Domestic Hot Water&#39;,
-    &#39;sort_order&#39;: 999},
-   {&#39;sensor_id&#39;: &#39;75985&#39;, &#39;sensor_group&#39;: &#39;Electrical&#39;, &#39;sort_order&#39;: 999}],
-  &#39;organizations&#39;: [[2, &#39;THRHA&#39;]]},
- {&#39;id&#39;: 4,
-  &#39;title&#39;: &#39;Homer Strawbale&#39;,
-  &#39;report_footer&#39;: &#39;&#39;,
-  &#39;latitude&#39;: 59.681849,
-  &#39;longitude&#39;: -151.641098,
-  &#39;timezone&#39;: &#39;US/Alaska&#39;,
-  &#39;schedule&#39;: &#39;&#39;,
-  &#39;timeline_annotations&#39;: &#39;&#39;,
-  &#39;other_properties&#39;: &#39;&#39;,
-  &#39;current_mode&#39;: &#39;&#39;,
-  &#39;sensors&#39;: [{&#39;sensor_id&#39;: &#39;hmr_ArptTemp&#39;,
+  &#39;sensors&#39;: [{&#39;sensor_id&#39;: &#39;pafa_temp&#39;,
     &#39;sensor_group&#39;: &#39;Weather&#39;,
     &#39;sort_order&#39;: 10},
-   {&#39;sensor_id&#39;: &#39;hmr_ArptWind&#39;, &#39;sensor_group&#39;: &#39;Weather&#39;, &#39;sort_order&#39;: 20},
-   {&#39;sensor_id&#39;: &#39;hmr_OutdoorT&#39;, &#39;sensor_group&#39;: &#39;Weather&#39;, &#39;sort_order&#39;: 30},
-   {&#39;sensor_id&#39;: &#39;hmr_StrHmT&#39;,
-    &#39;sensor_group&#39;: &#39;Space Conditions, Temperature&#39;,
+   {&#39;sensor_id&#39;: &#39;pafa_wind&#39;, &#39;sensor_group&#39;: &#39;Weather&#39;, &#39;sort_order&#39;: 20},
+   {&#39;sensor_id&#39;: &#39;pioneer_temp&#39;, &#39;sensor_group&#39;: &#39;Weather&#39;, &#39;sort_order&#39;: 30},
+   {&#39;sensor_id&#39;: &#39;pioneer_wind&#39;, &#39;sensor_group&#39;: &#39;Weather&#39;, &#39;sort_order&#39;: 40},
+   {&#39;sensor_id&#39;: &#39;nortech_PV_power&#39;,
+    &#39;sensor_group&#39;: &#39;Solar PV&#39;,
     &#39;sort_order&#39;: 10},
-   {&#39;sensor_id&#39;: &#39;hmr_GreenHsT&#39;,
-    &#39;sensor_group&#39;: &#39;Space Conditions, Temperature&#39;,
-    &#39;sort_order&#39;: 20},
-   {&#39;sensor_id&#39;: &#39;hmr_BoilerRmT&#39;,
-    &#39;sensor_group&#39;: &#39;Space Conditions, Temperature&#39;,
-    &#39;sort_order&#39;: 30},
-   {&#39;sensor_id&#39;: &#39;hmr_StrArrBtuMeter&#39;,
-    &#39;sensor_group&#39;: &#39;Solar Thermal&#39;,
+   {&#39;sensor_id&#39;: &#39;3c0034000447343233323032_temp&#39;,
+    &#39;sensor_group&#39;: &#39;IAQ Monitor #1&#39;,
     &#39;sort_order&#39;: 10},
-   {&#39;sensor_id&#39;: &#39;hmr_StrArrInT&#39;,
-    &#39;sensor_group&#39;: &#39;Solar Thermal&#39;,
+   {&#39;sensor_id&#39;: &#39;3c0034000447343233323032_rh&#39;,
+    &#39;sensor_group&#39;: &#39;IAQ Monitor #1&#39;,
     &#39;sort_order&#39;: 20},
-   {&#39;sensor_id&#39;: &#39;hmr_StrArrOutT&#39;,
-    &#39;sensor_group&#39;: &#39;Solar Thermal&#39;,
+   {&#39;sensor_id&#39;: &#39;3c0034000447343233323032_co2&#39;,
+    &#39;sensor_group&#39;: &#39;IAQ Monitor #1&#39;,
     &#39;sort_order&#39;: 30},
-   {&#39;sensor_id&#39;: &#39;hmr_StrArrFlowMeter&#39;,
-    &#39;sensor_group&#39;: &#39;Solar Thermal&#39;,
-    &#39;sort_order&#39;: 40},
-   {&#39;sensor_id&#39;: &#39;hmr_GrnArrBtuMeter&#39;,
-    &#39;sensor_group&#39;: &#39;Solar Thermal&#39;,
-    &#39;sort_order&#39;: 50},
-   {&#39;sensor_id&#39;: &#39;hmr_GrnArrInT&#39;,
-    &#39;sensor_group&#39;: &#39;Solar Thermal&#39;,
-    &#39;sort_order&#39;: 60},
-   {&#39;sensor_id&#39;: &#39;hmr_GrnArrOutT&#39;,
-    &#39;sensor_group&#39;: &#39;Solar Thermal&#39;,
-    &#39;sort_order&#39;: 70},
-   {&#39;sensor_id&#39;: &#39;hmr_GrnArrFlowMeter&#39;,
-    &#39;sensor_group&#39;: &#39;Solar Thermal&#39;,
-    &#39;sort_order&#39;: 80},
-   {&#39;sensor_id&#39;: &#39;hmr_PoolT&#39;,
-    &#39;sensor_group&#39;: &#39;Heat Storage&#39;,
-    &#39;sort_order&#39;: 10},
-   {&#39;sensor_id&#39;: &#39;hmr_PoolSoilT&#39;,
-    &#39;sensor_group&#39;: &#39;Heat Storage&#39;,
-    &#39;sort_order&#39;: 20},
-   {&#39;sensor_id&#39;: &#39;hmr_PL750_bottom&#39;,
-    &#39;sensor_group&#39;: &#39;Heat Storage&#39;,
-    &#39;sort_order&#39;: 30},
-   {&#39;sensor_id&#39;: &#39;hmr_PL750_mid&#39;,
-    &#39;sensor_group&#39;: &#39;Heat Storage&#39;,
-    &#39;sort_order&#39;: 40},
-   {&#39;sensor_id&#39;: &#39;hmr_PL750_top&#39;,
-    &#39;sensor_group&#39;: &#39;Heat Storage&#39;,
-    &#39;sort_order&#39;: 50},
-   {&#39;sensor_id&#39;: &#39;hmr_PriToPoolReturnT&#39;,
-    &#39;sensor_group&#39;: &#39;Heat Storage&#39;,
-    &#39;sort_order&#39;: 60},
-   {&#39;sensor_id&#39;: &#39;hmr_PriLoopT&#39;,
-    &#39;sensor_group&#39;: &#39;Heating System&#39;,
-    &#39;sort_order&#39;: 10},
-   {&#39;sensor_id&#39;: &#39;hmr_PoolToPriT&#39;,
-    &#39;sensor_group&#39;: &#39;Heating System&#39;,
-    &#39;sort_order&#39;: 20},
-   {&#39;sensor_id&#39;: &#39;hmr_MixedT&#39;,
-    &#39;sensor_group&#39;: &#39;Heating System&#39;,
-    &#39;sort_order&#39;: 30},
-   {&#39;sensor_id&#39;: &#39;hmr_BoilerStackT&#39;,
-    &#39;sensor_group&#39;: &#39;Heating System&#39;,
+   {&#39;sensor_id&#39;: &#39;3c0034000447343233323032_light&#39;,
+    &#39;sensor_group&#39;: &#39;IAQ Monitor #1&#39;,
     &#39;sort_order&#39;: 40}],
-  &#39;organizations&#39;: [[1, &#39;Homes&#39;]]}]</pre>
+  &#39;organizations&#39;: [[3, &#39;Other Commercial&#39;]]},
+ {&#39;id&#39;: 13,
+  &#39;title&#39;: &#39;Resolution Brewing&#39;,
+  &#39;report_footer&#39;: &#39;&#39;,
+  &#39;latitude&#39;: 61.219541,
+  &#39;longitude&#39;: -149.822507,
+  &#39;timezone&#39;: &#39;US/Alaska&#39;,
+  &#39;schedule&#39;: &#39;&#39;,
+  &#39;timeline_annotations&#39;: &#39;&#39;,
+  &#39;other_properties&#39;: &#39;&#39;,
+  &#39;current_mode&#39;: &#39;&#39;,
+  &#39;sensors&#39;: [{&#39;sensor_id&#39;: &#39;rbc_28.FF1A2D021400&#39;,
+    &#39;sensor_group&#39;: &#39;Temperature&#39;,
+    &#39;sort_order&#39;: 10},
+   {&#39;sensor_id&#39;: &#39;rbc_28.FFAB18021704&#39;,
+    &#39;sensor_group&#39;: &#39;Temperature&#39;,
+    &#39;sort_order&#39;: 20},
+   {&#39;sensor_id&#39;: &#39;rbc_28.FF41F5011703&#39;,
+    &#39;sensor_group&#39;: &#39;Temperature&#39;,
+    &#39;sort_order&#39;: 30},
+   {&#39;sensor_id&#39;: &#39;rbc_28.FF77A4011703&#39;,
+    &#39;sensor_group&#39;: &#39;Temperature&#39;,
+    &#39;sort_order&#39;: 40},
+   {&#39;sensor_id&#39;: &#39;rbc_28.FF1791011703&#39;,
+    &#39;sensor_group&#39;: &#39;Temperature&#39;,
+    &#39;sort_order&#39;: 50},
+   {&#39;sensor_id&#39;: &#39;rbc_28.FFEDCC011703&#39;,
+    &#39;sensor_group&#39;: &#39;Temperature&#39;,
+    &#39;sort_order&#39;: 60},
+   {&#39;sensor_id&#39;: &#39;PAMR_temp&#39;, &#39;sensor_group&#39;: &#39;Weather&#39;, &#39;sort_order&#39;: 10}],
+  &#39;organizations&#39;: [[3, &#39;Other Commercial&#39;]]}]</pre>
 </div>
 
 </div>
@@ -14029,11 +13935,11 @@ BMON system.  Pass one or a list of Building IDs to get Building information:</p
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Further documentation of the fields is available
+<p>The <code>sensors</code> item gives a list of Sensors associated with the Building.
+Further documentation of the fields is available
 <a href="https://github.com/alanmitchell/bmon/blob/master/bmsapp/models.py">Here</a>; search
-for the <code>class Building</code> section of the code.  The <code>sensors</code> item gives a list of
-Sensors associated with the Building.</p>
-<p>If you do not provide any IDs (either no parameters, or an empty list), information
+for the <code>class Building</code> section of the code.
+If you do not provide any IDs (either no parameters, or an empty list), information
 for <em>all</em> buildings will be returned.</p>
 <p>Here is the method for retrieving information about Organizations:</p>
 
@@ -14092,14 +13998,61 @@ for <em>all</em> buildings will be returned.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Again, further documentation of the fields is available
+<p>The <code>buildings</code> key gives the list of buildings associated with the organization.
+Again, further documentation of the fields is available
 <a href="https://github.com/alanmitchell/bmon/blob/master/bmsapp/models.py">Here</a>; search
-for the <code>class Organization</code> section of the code.  The <code>buildings</code> key gives the list
-of buildings associated with the organization. <code>server.organizations()</code> will return
+for the <code>class Organization</code> section of the code. <code>server.organizations()</code> will return
 information on all Organizations.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Storing-New-Sensor-Readings">Storing New Sensor Readings<a class="anchor-link" href="#Storing-New-Sensor-Readings">&#182;</a></h2><p>The <code>bmondata</code> package can be used to store new sensor readings into
+the BMON server's sensor reading database.  Readings are stored using the Server
+object, and a list of new readings are provided.  Here is an example:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="n">server</span><span class="o">.</span><span class="n">store_sensor_readings</span><span class="p">([</span>
+    <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span> <span class="s1">&#39;_testing&#39;</span><span class="p">,</span> <span class="mf">18.8</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span> <span class="s1">&#39;_hello&#39;</span><span class="p">,</span> <span class="mf">24.3</span><span class="p">),</span>
+<span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -14110,7 +14063,7 @@ information on all Organizations.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>jupyter nbconvert usage_examples.ipynb --to html
@@ -14131,7 +14084,7 @@ information on all Organizations.</p>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[NbConvertApp] Converting notebook usage_examples.ipynb to html
-[NbConvertApp] Writing 312827 bytes to usage_examples.html
+[NbConvertApp] Writing 308394 bytes to usage_examples.html
 </pre>
 </div>
 </div>

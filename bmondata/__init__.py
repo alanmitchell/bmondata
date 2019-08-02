@@ -1,4 +1,4 @@
-__version__ = '0.5.1'
+__version__ = '1.0.0'
 
 # Classes and methods that are in the top-level namespace
 from .server import Server

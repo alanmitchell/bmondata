@@ -9,3 +9,11 @@ sensor reading database.
 
 Usage examples are [shown here](http://htmlpreview.github.io/?https://github.com/alanmitchell/bmondata/blob/master/examples/usage_examples.html).
 The docstring for each method gives additional information.
+
+Install with pip:
+
+    pip install --upgrade bmondata
+
+This package is only compatible with BMON Servers running the BMON software version
+equal to or greater than:  Mon Jul 29 16:06:14 2019 -0800 (shown on the footer of the 
+BMON Graphs/Reports page.)
