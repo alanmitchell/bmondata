@@ -16372,7 +16372,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="bmondata-Usage-Examples">bmondata Usage Examples<a class="anchor-link" href="#bmondata-Usage-Examples">&#182;</a></h1>
+<h1 id="Usage-Examples-for-the-bmondata-Library">Usage Examples for the bmondata Library<a class="anchor-link" href="#Usage-Examples-for-the-bmondata-Library">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -16427,7 +16427,10 @@ settings.py file on the BMON server.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Retrieve-Sensor-Readings">Retrieve Sensor Readings<a class="anchor-link" href="#Retrieve-Sensor-Readings">&#182;</a></h2><p>The <code>sensor_readings()</code> method is used to retrieve sensor readings from one or
 more sensors.  The readings are returned in a Pandas DataFrame.  To retrieve
-readings from one sensor, specify the Sensor ID as the first parameter:</p>
+readings from one sensor, specify the Sensor ID as the first parameter. (You can
+determine a Sensor ID by viewing the 'Current Sensor Values' report and then hovering your
+cursor over the name of a sensor; the Sensor ID will be shown on the last line of
+the pop-up window.)</p>
 
 </div>
 </div>
@@ -17355,7 +17358,7 @@ two functions:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>jupyter nbconvert usage_examples.ipynb --to html
