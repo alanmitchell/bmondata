@@ -16404,7 +16404,7 @@ settings.py file on the BMON server.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">bmondata</span>
@@ -17099,7 +17099,7 @@ BMON system.  Pass one or a list of Building IDs to get Building information:</p
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">server</span><span class="o">.</span><span class="n">buildings</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">])</span>
@@ -17115,7 +17115,7 @@ BMON system.  Pass one or a list of Building IDs to get Building information:</p
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -17126,11 +17126,21 @@ BMON system.  Pass one or a list of Building IDs to get Building information:</p
   &#39;report_footer&#39;: &#39;&#39;,
   &#39;latitude&#39;: 64.864072,
   &#39;longitude&#39;: -147.775014,
+  &#39;floor_area&#39;: None,
+  &#39;building_type&#39;: None,
+  &#39;outdoor_temp&#39;: &#39;&#39;,
+  &#39;electric_ids&#39;: &#39;&#39;,
+  &#39;fuel_ids&#39;: &#39;&#39;,
+  &#39;indoor_temps&#39;: &#39;&#39;,
+  &#39;indoor_lights&#39;: &#39;&#39;,
+  &#39;co2_sensors&#39;: &#39;&#39;,
   &#39;timezone&#39;: &#39;US/Alaska&#39;,
   &#39;schedule&#39;: &#39;M-F: 8a-5p&#39;,
   &#39;timeline_annotations&#39;: &#39;&#39;,
   &#39;other_properties&#39;: &#39;&#39;,
   &#39;current_mode&#39;: &#39;&#39;,
+  &#39;fuel_rate&#39;: None,
+  &#39;electric_rate&#39;: None,
   &#39;sensors&#39;: [{&#39;sensor_id&#39;: &#39;pafa_temp&#39;,
     &#39;sensor_group&#39;: &#39;Weather&#39;,
     &#39;sort_order&#39;: 10},
@@ -17158,11 +17168,32 @@ BMON system.  Pass one or a list of Building IDs to get Building information:</p
   &#39;report_footer&#39;: &#39;&#39;,
   &#39;latitude&#39;: 61.219541,
   &#39;longitude&#39;: -149.822507,
+  &#39;floor_area&#39;: 1500.0,
+  &#39;building_type&#39;: &#39;RES&#39;,
+  &#39;outdoor_temp&#39;: &#39;PAMR_temp&#39;,
+  &#39;electric_ids&#39;: &#39;L001234_445&#39;,
+  &#39;fuel_ids&#39;: &#39;boiler1_fuel\r\nboiler2_fuel&#39;,
+  &#39;indoor_temps&#39;: &#39;rb_12422_temp&#39;,
+  &#39;indoor_lights&#39;: &#39;rb_44555_light\r\nrb_552343_light&#39;,
+  &#39;co2_sensors&#39;: &#39;rb_123422_co2&#39;,
   &#39;timezone&#39;: &#39;US/Alaska&#39;,
-  &#39;schedule&#39;: &#39;&#39;,
+  &#39;schedule&#39;: &#39;M-Su: 3p-8p&#39;,
   &#39;timeline_annotations&#39;: &#39;&#39;,
   &#39;other_properties&#39;: &#39;&#39;,
   &#39;current_mode&#39;: &#39;&#39;,
+  &#39;fuel_rate&#39;: {&#39;id&#39;: 1,
+   &#39;title&#39;: &#39;Enstar G2&#39;,
+   &#39;sort_order&#39;: 20,
+   &#39;customer_charge&#39;: 35.06,
+   &#39;rate&#39;: 9.67},
+  &#39;electric_rate&#39;: {&#39;id&#39;: 2,
+   &#39;title&#39;: &#39;Chugach Small Commercial&#39;,
+   &#39;sort_order&#39;: 20,
+   &#39;customer_charge&#39;: 17.0,
+   &#39;rate1&#39;: 0.156098,
+   &#39;block1&#39;: None,
+   &#39;rate2&#39;: None,
+   &#39;demand_charge&#39;: 0.0},
   &#39;sensors&#39;: [{&#39;sensor_id&#39;: &#39;rbc_28.FF1A2D021400&#39;,
     &#39;sensor_group&#39;: &#39;Temperature&#39;,
     &#39;sort_order&#39;: 10},
@@ -17196,10 +17227,13 @@ BMON system.  Pass one or a list of Building IDs to get Building information:</p
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The <code>sensors</code> item gives a list of Sensors associated with the Building.  The
 <code>organizations</code> item shows the organizations that the building is associated with.
-Further documentation of the fields is available
+The <code>fuel_rate</code> and <code>electric_rate</code> items give the fuel and electric rate schedules, if present.
+Seach <code>class FuelRate</code> and <code>class ElectricRate</code> <a href="https://github.com/alanmitchell/bmon/blob/master/bmsapp/models.py">Here</a>
+to see documentation of the rate structure fields.
+Further documentation of the other fields is available
 <a href="https://github.com/alanmitchell/bmon/blob/master/bmsapp/models.py">Here</a>; search
-for the <code>class Building</code> section of the code.
-If you do not provide any IDs (either no parameters, or an empty list), information
+for the <code>class Building</code> section of the code.</p>
+<p>If you do not provide any IDs (either no parameters, or an empty list), information
 for <em>all</em> buildings will be returned.</p>
 <p>Here is the method for retrieving information about Organizations:</p>
 
@@ -17358,7 +17392,7 @@ two functions:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>jupyter nbconvert usage_examples.ipynb --to html
@@ -17379,7 +17413,7 @@ two functions:</p>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[NbConvertApp] Converting notebook usage_examples.ipynb to html
-[NbConvertApp] Writing 381042 bytes to usage_examples.html
+[NbConvertApp] Writing 381292 bytes to usage_examples.html
 </pre>
 </div>
 </div>
