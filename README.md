@@ -7,7 +7,7 @@ information, and organization information.  It is not comprehensive as some BMON
 not available.  It also allows for storage of new sensor readings in a BMON
 sensor reading database.
 
-Usage examples are [shown here](http://htmlpreview.github.io/?https://github.com/alanmitchell/bmondata/blob/master/examples/usage_examples.html).
+Usage examples are [shown here](http://web.analysisnorth.com.s3-us-west-2.amazonaws.com/bmondata/usage_examples.html).
 The docstring for each method gives additional information.
 
 Install with pip:
