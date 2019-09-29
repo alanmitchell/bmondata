@@ -1,3 +1,6 @@
+# See: https://packaging.python.org/tutorials/packaging-projects/
+# for how to install this package on PyPi.
+
 import setuptools
 
 with open("README.md", "r") as fh:
