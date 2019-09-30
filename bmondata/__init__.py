@@ -4,4 +4,4 @@ __version__ = '1.0.2'
 from .server import Server
 
 # Make all utility functions top-level
-from.util import *
+from .util import *
