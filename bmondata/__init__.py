@@ -1,7 +1,7 @@
-__version__ = '1.0.4'
+__version__ = '1.0.5'
 # Version info
-# 1.0.4: Added schedule module
-# 1.0.3: Bad release, had to delete.
+# 1.0.5: Added schedule module
+# 1.0.3 & 1.0.4: Bad releases, had to delete.
 
 # Classes and methods that are in the top-level namespace
 from .server import Server
