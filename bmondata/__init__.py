@@ -1,5 +1,6 @@
-__version__ = '1.0.5'
+__version__ = '1.0.6'
 # Version info
+# 1.0.6: Added handling of building or organization ID of 0
 # 1.0.5: Added schedule module
 # 1.0.3 & 1.0.4: Bad releases, had to delete.
 

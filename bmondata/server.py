@@ -198,14 +198,18 @@ class Server:
 
         Parameters:
             building_ids: A list of the building IDs for the requested buildings. An empty list
-                returns all buildings.  Also, one building ID, not in a list, can be provided to
-                request information for one building.
+                or a building ID of 0 returns all buildings.  Also, one building ID, not in a list,
+                can be provided to request information for one building.
 
         Returns:
             A list of dictionaries, each dicionary describing one building.  The dictionaries
             contain most or all of the fields of information describing the building, along with
             information about the sensors and organizations associated with the building.
         """
+        # check for the special case of a 0 ID:
+        if building_ids==0 or building_ids==[0]:
+            building_ids = []      # return all buildings
+
         params = {'building_id': building_ids}
         # make the API call
         resp = requests.get(self._url('api/v2/buildings/'), params=params).json()
@@ -218,14 +222,18 @@ class Server:
 
         Parameters:
             organization_ids: A list of the organization IDs for the requested sensors. An empty
-                list will return all organizations.  Also, one sensor ID, not in a list, can be 
-                provided to request information for one organization.
+                list or an organization ID of 0 will return all organizations.  Also, one sensor ID, 
+                not in a list, can be provided to request information for one organization.
 
         Returns:
             A list of dictionaries, each dicionary describing one organization.  The dictionaries
             contain most or all of the fields of information describing the organization, along with
             information about the buildings associated with the organization.
         """
+        # check for the special case of a 0 ID:
+        if organization_ids==0 or organization_ids==[0]:
+            organization_ids = []    # return all organizations
+
         params = {'organization_id': organization_ids}
         # make the API call
         resp = requests.get(self._url('api/v2/organizations/'), params=params).json()
