@@ -7,10 +7,10 @@ build-backend = "hatchling.build"
 
 [project]
 name = "bmondata"
-dynamic = ["version"]
+version = "1.0.6"
 description = "Allows retrieval and storage of data on BMON Servers."
 readme = "README.md"
-requires-python = ">=3.6"
+requires-python = ">=3.8"
 license = { text = "Apache-2.0" }
 authors = [
     { name = "Alan Mitchell", email = "tabb99@gmail.com" },
@@ -29,10 +29,6 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/alanmitchell/bmondata"
-
-# The version number lives in one place only: bmondata/__init__.py
-[tool.hatch.version]
-path = "bmondata/__init__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["bmondata"]

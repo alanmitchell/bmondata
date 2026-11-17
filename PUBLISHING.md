@@ -55,16 +55,31 @@ Both `pyproject.toml` and `uv.lock` change as a result, and both are committed.
 
 ## Updating the version number
 
-The version lives in **exactly one place**: the `__version__` string at the top
-of `bmondata/__init__.py`. The build reads it from there (via the
-`[tool.hatch.version]` setting in `pyproject.toml`), so `pyproject.toml` has no
-version of its own to keep in sync.
+The version lives in **exactly one place**: the `version` field in the
+`[project]` table of `pyproject.toml`. At runtime `bmondata.__version__` reads
+it back out of the installed package metadata, so there is nothing to keep in
+sync by hand.
 
-To release a new version, edit that one line and add a note to the version
-history comment just below it:
+Bump it with uv, which rewrites `pyproject.toml`, re-locks, and re-syncs the
+environment in one step:
+
+    uv version --bump patch     # 1.0.6 -> 1.0.7   bug fixes
+    uv version --bump minor     # 1.0.6 -> 1.1.0   new backward-compatible features
+    uv version --bump major     # 1.0.6 -> 2.0.0   breaking changes
+
+Check the current version, or preview a bump without writing it:
+
+    uv version
+    uv version --bump patch --dry-run
+
+To set an exact version instead of bumping, pass it as an argument:
+
+    uv version 1.2.0
+
+Then add a note to the version history comment in `bmondata/__init__.py`. That
+comment is just a changelog — the number itself no longer lives there:
 
 ```python
-__version__ = '1.0.7'
 # Version info
 # 1.0.7: Short description of what changed in this release.
 # 1.0.6: Added handling of building or organization ID of 0
@@ -73,19 +88,18 @@ __version__ = '1.0.7'
 
 Notes:
 
-* Use [semantic versioning](https://semver.org/): bump the patch number for
-  fixes, the minor number for new backward-compatible features, and the major
-  number for breaking changes.
+* Follow [semantic versioning](https://semver.org/) when choosing which part to
+  bump.
 * **A version number can never be reused on PyPI**, even if the release is
   deleted. If an upload turns out to be broken, bump the version and upload
   again rather than trying to replace it.
-* Because the version is dynamic, `uv version --bump patch` does *not* work on
-  this project; it only edits a static version in `pyproject.toml`. Editing
-  `bmondata/__init__.py` is the supported way.
 
 Confirm the version uv will build:
 
     uv run python -c "import bmondata; print(bmondata.__version__)"
+
+If this prints `unknown`, the package is not installed in the environment being
+used; run `uv sync` (or use `uv run`, which syncs first).
 
 ## Building the distributions
 
@@ -149,7 +163,8 @@ and check the project page at <https://pypi.org/project/bmondata/>.
 ## Full release checklist
 
 1. Make and commit the code changes.
-2. Bump `__version__` in `bmondata/__init__.py` and add a version history note.
+2. `uv version --bump patch` (or `minor`/`major`), and add a version history
+   note to the comment in `bmondata/__init__.py`.
 3. `uv sync` and smoke-test the change.
 4. `rm -rf dist && uv build`
 5. `uv publish --dry-run`, then `uv publish`
@@ -167,5 +182,5 @@ and check the project page at <https://pypi.org/project/bmondata/>.
 | `File already exists` on publish | That version is already on PyPI. Bump `__version__`, rebuild, and publish again. |
 | `uv publish` uploads an old release too | Stale files in `dist/`. `rm -rf dist && uv build`. |
 | `403 Forbidden` on publish | Token is missing, expired, or scoped to a different project. Create a new scoped token. |
-| `error: We cannot get or set dynamic project versions` | Expected — `uv version` is not usable here. Edit `bmondata/__init__.py` instead. |
-| Build picks up the wrong version | `uv build` reads `bmondata/__init__.py`; make sure the edit was saved. |
+| `bmondata.__version__` is `unknown` | The package is not installed in the active environment. Run `uv sync`, or run code with `uv run`. |
+| Build picks up the wrong version | `uv build` reads the `version` field in `pyproject.toml`; check it with `uv version`. |

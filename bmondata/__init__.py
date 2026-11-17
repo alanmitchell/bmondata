@@ -1,4 +1,14 @@
-__version__ = '1.0.6'
+# The version number is stored in pyproject.toml, the single source of truth,
+# and is read back here from the installed package metadata.  Bump it with
+# `uv version --bump patch` (see PUBLISHING.md).
+from importlib.metadata import version, PackageNotFoundError
+
+try:
+    __version__ = version('bmondata')
+except PackageNotFoundError:
+    # Running from a source tree where the package has not been installed.
+    __version__ = 'unknown'
+
 # Version info
 # 1.0.6: Added handling of building or organization ID of 0
 # 1.0.5: Added schedule module

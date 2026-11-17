@@ -10,9 +10,13 @@ sensor reading database.
 Usage examples are [shown here](http://web.analysisnorth.com.s3-us-west-2.amazonaws.com/bmondata/usage_examples.html).
 The docstring for each method gives additional information.
 
-Install with pip:
+Requires Python 3.8 or later.  Install with pip:
 
     pip install --upgrade bmondata
+
+or with [uv](https://docs.astral.sh/uv/):
+
+    uv add bmondata
 
 This package is only compatible with BMON Servers running the BMON software version
 equal to or greater than:  Mon Jul 29 16:06:14 2019 -0800 (shown on the footer of the 
