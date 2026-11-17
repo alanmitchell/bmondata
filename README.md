@@ -17,3 +17,13 @@ Install with pip:
 This package is only compatible with BMON Servers running the BMON software version
 equal to or greater than:  Mon Jul 29 16:06:14 2019 -0800 (shown on the footer of the 
 BMON Graphs/Reports page.)
+
+## Development
+
+This project uses the [uv](https://docs.astral.sh/uv/) package manager.  Create the
+development environment with:
+
+    uv sync
+
+See [PUBLISHING.md](PUBLISHING.md) for how to build the package, update the version
+number, and upload a release to PyPI.

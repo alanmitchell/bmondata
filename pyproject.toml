@@ -1,0 +1,54 @@
+# Project metadata and build configuration.
+# See PUBLISHING.md for how to build this package and upload it to PyPI.
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bmondata"
+dynamic = ["version"]
+description = "Allows retrieval and storage of data on BMON Servers."
+readme = "README.md"
+requires-python = ">=3.6"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Alan Mitchell", email = "tabb99@gmail.com" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests>=2.18.4",
+    "pandas>=0.23.2",
+    "pytz",
+    "python-dateutil",
+]
+
+[project.urls]
+Homepage = "https://github.com/alanmitchell/bmondata"
+
+# The version number lives in one place only: bmondata/__init__.py
+[tool.hatch.version]
+path = "bmondata/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["bmondata"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "bmondata",
+    "README.md",
+    "LICENSE",
+    "PUBLISHING.md",
+]
+
+# Named index so `uv publish --index testpypi` can be used for a trial upload.
+# `explicit = true` keeps it out of dependency resolution.
+[[tool.uv.index]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+publish-url = "https://test.pypi.org/legacy/"
+explicit = true
