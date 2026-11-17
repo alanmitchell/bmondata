@@ -10,7 +10,7 @@ sensor reading database.
 Usage examples are [shown here](http://web.analysisnorth.com.s3-us-west-2.amazonaws.com/bmondata/usage_examples.html).
 The docstring for each method gives additional information.
 
-Requires Python 3.8 or later.  Install with pip:
+Requires Python 3.9 or later.  Install with pip:
 
     pip install --upgrade bmondata
 
