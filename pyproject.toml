@@ -7,7 +7,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "bmondata"
-version = "1.0.6"
+version = "1.0.7"
 description = "Allows retrieval and storage of data on BMON Servers."
 readme = "README.md"
 requires-python = ">=3.9"

@@ -10,6 +10,7 @@ except PackageNotFoundError:
     __version__ = 'unknown'
 
 # Version info
+# 1.0.7: Switched to uv version for version management. Added pytz and dateutil to dependencies.
 # 1.0.6: Added handling of building or organization ID of 0
 # 1.0.5: Added schedule module
 # 1.0.3 & 1.0.4: Bad releases, had to delete.
